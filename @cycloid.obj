@@ -1,19 +1,20 @@
 @ƒTƒCƒNƒƒCƒh•Ô
 --color:0xffff00
 --track0:Šî‘b”¼Œa,0,1000,100,0.5
---track1:•`‰æ”¼Œa,0,1000,20,0.5
+--track1:•`‰æ”¼Œa,-100,100,20,0.5
 --track2:•”,0,100,3,1
---track3:ü•,0,100,10,1
+--track3:ƒIƒtƒZƒbƒg,0,100,0,0.1
 n= 5000
-thickness = obj.getvalue(3)
+thickness = 10
 rc = obj.getvalue(0)
 rd = obj.getvalue(1)
 rm = rc/obj.getvalue(2)
+offsetr = obj.getvalue(3)
 obj.load("figure","‰~",color,thickness)
 theta=0
 for ii=0,n-1 do
 	theta = ii*2*math.pi/n 
-	x = (rc+rm)*math.cos(theta)-rd*math.cos((rc+rm)/rm*theta)
-	y = (rc+rm)*math.sin(theta)-rd*math.sin((rc+rm)/rm*theta)
+	x = (rc+rm)*math.cos(theta)-rd*math.cos((rc+rm)/rm*theta) - offsetr*((rc+rm)/(rc+rm-rd)*math.cos(theta)+rd/(rc+rm-rd)*math.cos((rc+rm)/rm*theta))
+	y = (rc+rm)*math.sin(theta)-rd*math.sin((rc+rm)/rm*theta) - offsetr*((rc+rm)/(rc+rm-rd)*math.sin(theta)+rd/(rc+rm-rd)*math.sin((rc+rm)/rm*theta))
 	obj.draw(x,y,0,0.5)
 end
