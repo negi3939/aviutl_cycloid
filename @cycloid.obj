@@ -1,4 +1,5 @@
 @ƒTƒCƒNƒƒCƒh•Ô
+--color:0xffff00
 --track0:Šî‘b”¼Œa,0,1000,100,0.5
 --track1:ŠOü”¼Œa,0,1000,100,0.5
 --track2:•”,0,100,0,1
@@ -6,7 +7,7 @@
 n= 5000
 r = obj.getvalue(0)
 iro = 0xffffff
-obj.load("figure","‰~",iro,30)
+obj.load("figure","‰~",color,30)
 theta=0
 for ii=0,n-1 do
 	theta = ii*2*math.pi/n 
