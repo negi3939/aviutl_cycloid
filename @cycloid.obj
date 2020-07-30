@@ -1,17 +1,19 @@
 @ƒTƒCƒNƒƒCƒh•Ô
 --color:0xffff00
 --track0:Šî‘b”¼Œa,0,1000,100,0.5
---track1:ŠOü”¼Œa,0,1000,100,0.5
---track2:•”,0,100,0,1
---track3:ü•,0,15,0,1
+--track1:•`‰æ”¼Œa,0,1000,20,0.5
+--track2:•”,0,100,3,1
+--track3:ü•,0,100,10,1
 n= 5000
-r = obj.getvalue(0)
-iro = 0xffffff
-obj.load("figure","‰~",color,30)
+thickness = obj.getvalue(3)
+rc = obj.getvalue(0)
+rd = obj.getvalue(1)
+rm = rc/obj.getvalue(2)
+obj.load("figure","‰~",color,thickness)
 theta=0
 for ii=0,n-1 do
 	theta = ii*2*math.pi/n 
-	x = r*math.cos(theta)
-	y = r*math.sin(theta)
+	x = (rc+rm)*math.cos(theta)-rd*math.cos((rc+rm)/rm*theta)
+	y = (rc+rm)*math.sin(theta)-rd*math.sin((rc+rm)/rm*theta)
 	obj.draw(x,y,0,0.5)
 end
