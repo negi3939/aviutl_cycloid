@@ -17,8 +17,8 @@ for ii=0,n-1 do
 	theta = ii*2*math.pi/n 
 	cycx = (rc+rm)*math.cos(theta)-rd*math.cos((rc+rm)/rm*theta)
 	cycy = (rc+rm)*math.sin(theta)-rd*math.sin((rc+rm)/rm*theta)
-	fcx = -(rc+rm)*math.sin(theta)+rd*(rc+rm)/rm*math.sin((rc+rm)/rm*theta)
-	fcy = (rc+rm)*math.cos(theta)-rd*(rc+rm)/rm*math.cos((rc+rm)/rm*theta)
+	fcx = (rc+rm)*math.cos(theta)-rd*(rc+rm)/rm*math.cos((rc+rm)/rm*theta) 
+	fcy = (rc+rm)*math.sin(theta)-rd*(rc+rm)/rm*math.sin((rc+rm)/rm*theta)
 	if(fcx*cycx+fcy*cycy < 0) then
 		signoff = 1
 	else
