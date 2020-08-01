@@ -1,7 +1,8 @@
 @サイクロイド歯車
 --color:0xffff00
---track0:基礎半径,0,1000,100,0.5
---track1:描画半径,0,100,10,0.5
+--check0:歯車同期,0
+--track0:基礎半径,0,1000,200,0.5
+--track1:描画半径,0,100,20,0.5
 --track2:歯数,0,100,8,1
 --track3:オフセット,-100,300,0,0.1
 n= 5000
@@ -26,9 +27,12 @@ for ii=0,n-1 do
 	end
 	cyclx = cycx + signoff*offsetr/math.sqrt(fcx*fcx+fcy*fcy)*fcx
 	cycly = cycy + signoff*offsetr/math.sqrt(fcx*fcx+fcy*fcy)*fcy
-	cth0 = math.rad(obj.getvalue("rz"))
-	cx0 = obj.getvalue("x")
-	cy0 = obj.getvalue("y")
+	if(obj.check0) then 
+	else
+		cth0 = math.rad(obj.getvalue("rz"))
+		cx0 = obj.getvalue("x")
+		cy0 = obj.getvalue("y")	
+	end
 	cdx = cx0  + cyclx*math.cos(cth0) + cycly*math.sin(cth0)
 	cdy = cy0  -cyclx*math.sin(cth0) + cycly*math.cos(cth0)
 	obj.draw(cdx,cdy,0,0.5)
