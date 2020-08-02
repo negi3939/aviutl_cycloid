@@ -14,6 +14,10 @@ offsetr = obj.getvalue(3)
 obj.load("figure","‰~",color,thickness)
 theta=0
 signoff = 1
+
+cyclx ={}
+cycly ={}
+
 for ii=0,n-1 do
 	theta = ii*2*math.pi/n 
 	cycx = (rc+rm)*math.cos(theta)-rd*math.cos((rc+rm)/rm*theta)
@@ -25,15 +29,14 @@ for ii=0,n-1 do
 	else
 		signoff = -1
 	end
-	cyclx = cycx + signoff*offsetr/math.sqrt(fcx*fcx+fcy*fcy)*fcx
-	cycly = cycy + signoff*offsetr/math.sqrt(fcx*fcx+fcy*fcy)*fcy
-	if(obj.check0) then 
-	else
-		cth0 = math.rad(obj.getvalue("rz"))
-		cx0 = obj.getvalue("x")
-		cy0 = obj.getvalue("y")	
-	end
-	cdx = cx0  + cyclx*math.cos(cth0) + cycly*math.sin(cth0)
-	cdy = cy0  -cyclx*math.sin(cth0) + cycly*math.cos(cth0)
+	cyclx[ii] = cycx + signoff*offsetr/math.sqrt(fcx*fcx+fcy*fcy)*fcx
+	cycly[ii] = cycy + signoff*offsetr/math.sqrt(fcx*fcx+fcy*fcy)*fcy
+end
+for ii=0,n-1 do
+	cth0 = math.rad(obj.getvalue("rz"))
+	cx0 = cx0 or obj.getvalue("x")
+	cy0 = cy0 or obj.getvalue("y")	
+	cdx = cx0  + cyclx[ii]*math.cos(cth0) + cycly[ii]*math.sin(cth0)
+	cdy = cy0  -cyclx[ii]*math.sin(cth0) + cycly[ii]*math.cos(cth0)
 	obj.draw(cdx,cdy,0,0.5)
 end

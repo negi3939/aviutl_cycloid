@@ -1,0 +1,11 @@
+@サイクロイド歯車
+--track0:偏心,0,1000,200,0.5
+--track1:角速度,-100,100,20,0.5
+for ii=0,n-1 do
+	cth0 = math.rad(obj.getvalue("rz"))
+	cx0 = cx0 or obj.getvalue("x")
+	cy0 = cy0 or obj.getvalue("y")	
+	cdx = cx0  + cyclx[ii]*math.cos(cth0) + cycly[ii]*math.sin(cth0)
+	cdy = cy0  -cyclx[ii]*math.sin(cth0) + cycly[ii]*math.cos(cth0)
+	obj.draw(cdx,cdy,0,0.5)
+end
