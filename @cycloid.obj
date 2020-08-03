@@ -16,6 +16,7 @@ signoff = 1
 
 cyclx ={}
 cycly ={}
+cycth ={}
 obj.load("figure","‰~",color,thickness)
 for ii=0,n-1 do
 	theta = ii*2*math.pi/n 
@@ -30,6 +31,7 @@ for ii=0,n-1 do
 	end
 	cyclx[ii] = cycx + signoff*offsetr/math.sqrt(fcx*fcx+fcy*fcy)*fcx
 	cycly[ii] = cycy + signoff*offsetr/math.sqrt(fcx*fcx+fcy*fcy)*fcy
+	cycth[ii] = math.atan2(cycly[ii],cyclx[ii])
 end
 cth0 = math.rad(obj.getvalue("rz"))
 cx0 = obj.getvalue("x")

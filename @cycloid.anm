@@ -1,6 +1,9 @@
 @ÉTÉCÉNÉçÉCÉhéïé‘
+--color:0xff00ff
+--check0:ìhÇËÇ¬Ç‘Çµ,0
 --track0:íÜêSäpë¨ìx,-100,100,20,0.1
 --track1:å∏ë¨î‰,-100,100,20,0.1
+colorcent = color
 centr1 =  rd
 omega1 = obj.getvalue(0)
 omega2 = obj.getvalue(0)/obj.getvalue(1)
@@ -8,10 +11,29 @@ cth0 = cth0 + omega2*obj.time
 cx0 = cx0 + centr1*math.cos(omega1*obj.time)
 cy0 = cy0 + centr1*math.sin(omega1*obj.time)
 obj.load("figure","â~",colorcyc,thickness)
+mmcc = 15
 for ii=0,n-1 do
 	cdx = cx0  + cyclx[ii]*math.cos(cth0) + cycly[ii]*math.sin(cth0)
 	cdy = cy0  -cyclx[ii]*math.sin(cth0) + cycly[ii]*math.cos(cth0)
 	obj.draw(cdx,cdy,0,0.5)
+	if(obj.check0) then
+		for jj=0,mmcc-1 do
+			rcc = rm+rc-offsetr+rd-3*rd/mmcc*jj
+			rccx = rcc*math.cos(cycth[ii])
+			rccy = rcc*math.sin(cycth[ii])	
+			if(((rccx*rccx+rccy*rccy)<(cyclx[ii]*cyclx[ii]+cycly[ii]*cycly[ii]))) then
+				cdx = cx0  + rccx*math.cos(cth0) + rccy*math.sin(cth0)
+				cdy = cy0  -rccx*math.sin(cth0) + rccy*math.cos(cth0)
+				obj.draw(cdx,cdy,0,0.5)
+			end
+		end
+	end
 end
-obj.load("figure","â~",color,3*thickness)
+if(obj.check0) then
+	obj.load("figure","â~",colorcyc,3.8*(rc+rm-rd-offsetr))
+	obj.draw(cx0,cy0,0,0.5)
+end
+obj.load("figure","â~",colorcent,8*rd)
+obj.draw(0,0,0,0.5)
+obj.load("figure","â~",colorcyc,3*thickness)
 obj.draw(cx0,cy0,0,0.5)
